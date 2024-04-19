@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/watchlist_model.dart';
 import 'package:movies_app/shared/styles/colors.dart';
-import 'package:movies_app/tabs/browse_tab.dart';
+import 'package:movies_app/tabs/Categories_tab.dart';
 import 'package:movies_app/tabs/home_tab.dart';
 import 'package:movies_app/tabs/search_tab.dart';
 import 'package:movies_app/tabs/watchlist_tab.dart';
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> tabs = [
     const HomeTab(),
     const SearchTab(),
-    const BrowseTab(),
+    const CategoriesTab(),
     WatchListTab(
       model: WatchListModel(title: "", overview: "", backDropPath: ""),
     ),

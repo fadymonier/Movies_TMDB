@@ -22,33 +22,42 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(412, 870),
-      minTextAdapt: true,
-      splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            scaffoldBackgroundColor: MyColors.backgroundColor,
-            appBarTheme: AppBarTheme(
-              titleTextStyle: TextStyle(
-                  color: MyColors.primaryColor,
-                  fontSize: 26.sp,
-                  fontWeight: FontWeight.bold),
-              backgroundColor: MyColors.backgroundColor,
+          scaffoldBackgroundColor: MyColors.backgroundColor,
+          appBarTheme: const AppBarTheme(
+            titleTextStyle: TextStyle(
+              color: MyColors.primaryColor,
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
             ),
-            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                backgroundColor: MyColors.navBarColor)),
+            backgroundColor: MyColors.backgroundColor,
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: MyColors.primaryColor,
+            selectedLabelStyle: TextStyle(fontSize: 10),
+            unselectedLabelStyle: TextStyle(fontSize: 10),
+            unselectedItemColor: MyColors.secondaryColor,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            backgroundColor: MyColors.navBarColor,
+          ),
+        ),
         initialRoute: SplashScreen.routeName,
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
           HomePage.routeName: (context) => const HomePage(),
           MovieDetailsScreen.routeName: (context) => const MovieDetailsScreen(
-              name: "",
-              description: "",
-              posterUrl: "",
-              vote: "",
-              releaseDate: "",
-              imageUrl: "",
-              backdropUrl: "")
+                name: "",
+                description: "",
+                posterUrl: "",
+                vote: "",
+                releaseDate: "",
+                imageUrl: "",
+                backdropUrl: "",
+              ),
         },
       ),
     );

@@ -1,10 +1,11 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/shared/network/remote/api_manager.dart';
 import 'package:movies_app/shared/styles/colors.dart';
 
-class BrowseTab extends StatelessWidget {
-  const BrowseTab({super.key});
+class CategoriesTab extends StatelessWidget {
+  const CategoriesTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +66,7 @@ class BrowseTab extends StatelessWidget {
             itemBuilder: (context, index) {
               final category = categoriesList[index];
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0.r),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -74,7 +75,7 @@ class BrowseTab extends StatelessWidget {
                       child: Image.asset(
                         MyCategoriesList
                                 .categories[category.name!.toLowerCase()] ??
-                            '',
+                            "",
                         width: 200.w,
                         height: 100.h,
                         fit: BoxFit.fill,
@@ -115,7 +116,7 @@ class MyCategoriesList {
     'history': 'assets/images/history.png',
     'mystery': 'assets/images/mystery.png',
     'romance': 'assets/images/romance.png',
-    'Science fiction': 'assets/images/sciencefiction.png',
+    'science fiction': 'assets/images/sciencefiction.png',
     'tv movie': 'assets/images/tvmovie.png',
     'thriller': 'assets/images/thriller.png',
     'war': 'assets/images/war.png',

@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/items/popular_slider.dart';
 import 'package:movies_app/items/topRated_slider.dart';
 import 'package:movies_app/items/upcoming_slider.dart';
@@ -17,27 +18,27 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: MyColors.backgroundColor,
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 1000,
+          height: 986.h,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SafeArea(
+              const SafeArea(
                 child: PopularSlider(),
               ),
               SizedBox(
-                height: 20,
+                height: 15.h,
               ),
-              UpcomingSlider(),
+              const UpcomingSlider(),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
-              TopRatedSlider(),
+              const TopRatedSlider(),
               SizedBox(
-                height: 30,
+                height: 30.h,
               ),
             ],
           ),

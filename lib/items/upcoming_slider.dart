@@ -27,11 +27,11 @@ class _UpcomingSliderState extends State<UpcomingSlider> {
             return const SizedBox();
           }
           if (snapshot.hasError) {
-            return const Center(
+            return Center(
               child: Text(
                 "Something went Wrong !",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   color: MyColors.primaryColor,
                 ),
               ),
@@ -40,11 +40,11 @@ class _UpcomingSliderState extends State<UpcomingSlider> {
 
           var upcomingList = snapshot.data?.results ?? [];
           if (upcomingList.isEmpty) {
-            return const Center(
+            return Center(
               child: Text(
                 "No Results",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   color: MyColors.primaryColor,
                 ),
               ),
@@ -53,29 +53,29 @@ class _UpcomingSliderState extends State<UpcomingSlider> {
           return Container(
             color: MyColors.secBackgroundColor,
             child: Padding(
-              padding: const EdgeInsets.only(left: 10.0),
+              padding: EdgeInsets.only(left: 10.0.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 10.h,
                   ),
                   Text(
                     "New Releases",
                     style: TextStyle(
                         color: MyColors.primaryColor,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 15,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600),
                   ),
                   SizedBox(
-                    height: 200,
-                    width: 800,
+                    height: 15.h,
+                  ),
+                  SizedBox(
+                    height: 220.h,
+                    width: 800.w,
                     child: ListView.separated(
-                      separatorBuilder: (context, index) => const SizedBox(
-                        width: 10,
+                      separatorBuilder: (context, index) => SizedBox(
+                        width: 10.w,
                       ),
                       scrollDirection: Axis.horizontal,
                       itemCount: upcomingList.length,
@@ -84,10 +84,10 @@ class _UpcomingSliderState extends State<UpcomingSlider> {
                           alignment: Alignment.topLeft,
                           children: [
                             SizedBox(
-                              height: 190,
-                              width: 130,
+                              height: 200.h,
+                              width: 130.w,
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(4),
+                                borderRadius: BorderRadius.circular(4.r),
                                 child: InkWell(
                                   onTap: () {
                                     Navigator.push(
@@ -128,7 +128,7 @@ class _UpcomingSliderState extends State<UpcomingSlider> {
                                     fit: BoxFit.fill,
                                     '${Constants.imageURL}${snapshot.data!.results?[index].posterPath}',
                                     filterQuality: FilterQuality.high,
-                                    height: 50,
+                                    height: 130.h,
                                     width: double.infinity,
                                   ),
                                 ),
@@ -151,7 +151,7 @@ class _UpcomingSliderState extends State<UpcomingSlider> {
                                   child: Icon(
                                     CupertinoIcons.bookmark_fill,
                                     color: Colors.white.withOpacity(0.75),
-                                    size: 30,
+                                    size: 30.sp,
                                   ),
                                 ),
                               ],

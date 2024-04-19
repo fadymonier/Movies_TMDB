@@ -32,11 +32,11 @@ class _PopularSliderState extends State<PopularSlider> {
             );
           }
           if (snapshot.hasError) {
-            return const Center(
+            return Center(
               child: Text(
                 "Something went Wrong !",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   color: MyColors.primaryColor,
                 ),
               ),
@@ -44,11 +44,11 @@ class _PopularSliderState extends State<PopularSlider> {
           }
           var popularList = snapshot.data?.results ?? [];
           if (popularList.isEmpty) {
-            return const Center(
+            return Center(
               child: Text(
                 "No Results",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   color: MyColors.primaryColor,
                 ),
               ),
@@ -57,7 +57,7 @@ class _PopularSliderState extends State<PopularSlider> {
           return CarouselSlider.builder(
             itemCount: popularList.length,
             options: CarouselOptions(
-              height: 300,
+              height: 300.h,
               viewportFraction: 1,
               initialPage: 0,
               enableInfiniteScroll: true,
@@ -74,7 +74,7 @@ class _PopularSliderState extends State<PopularSlider> {
               children: [
                 Container(
                   alignment: Alignment.topCenter,
-                  height: 290,
+                  height: 290.h,
                   width: double.infinity,
                   child: Stack(
                     alignment: Alignment.center,
@@ -82,8 +82,9 @@ class _PopularSliderState extends State<PopularSlider> {
                       Image.network(
                         '${Constants.imageURL}${snapshot.data?.results?[index].backdropPath}',
                         fit: BoxFit.fill,
-                        height: 220,
+                        height: 220.h,
                         width: double.infinity,
+                        filterQuality: FilterQuality.high,
                       ),
                     ],
                   ),
@@ -93,14 +94,14 @@ class _PopularSliderState extends State<PopularSlider> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0.r),
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: BorderRadius.circular(4.r),
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: BorderRadius.circular(4.r),
                           child: Stack(
                             alignment: Alignment.topLeft,
                             children: [
@@ -136,9 +137,10 @@ class _PopularSliderState extends State<PopularSlider> {
                                 },
                                 child: Image.network(
                                   '${Constants.imageURL}${snapshot.data?.results?[index].posterPath}',
-                                  fit: BoxFit.fill,
-                                  height: 200,
-                                  width: 130,
+                                  fit: BoxFit.contain,
+                                  height: 200.h,
+                                  width: 130.w,
+                                  filterQuality: FilterQuality.high,
                                 ),
                               ),
                               Stack(
@@ -158,7 +160,7 @@ class _PopularSliderState extends State<PopularSlider> {
                                     child: Icon(
                                       CupertinoIcons.bookmark_fill,
                                       color: Colors.white.withOpacity(0.75),
-                                      size: 30,
+                                      size: 30.sp,
                                     ),
                                   ),
                                 ],
@@ -169,7 +171,7 @@ class _PopularSliderState extends State<PopularSlider> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 25, left: 5),
+                      padding: EdgeInsets.only(bottom: 25.r, left: 5.r),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -183,14 +185,14 @@ class _PopularSliderState extends State<PopularSlider> {
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: TextStyle(
-                                    fontSize: 13.sp,
-                                    overflow: TextOverflow.fade,
+                                    fontSize: 15.sp,
+                                    overflow: TextOverflow.ellipsis,
                                     color: MyColors.primaryColor,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
-                          const SizedBox(height: 5),
+                          SizedBox(height: 5.h),
                           Text(
                             "${snapshot.data?.results?[index].releaseDate}",
                             style:

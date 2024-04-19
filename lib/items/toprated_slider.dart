@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/layout/movie_details.dart';
 import 'package:movies_app/models/watchlist_model.dart';
-import 'package:movies_app/shared/network/remote/api_manager.dart'; // Import the file where Results is defined
+import 'package:movies_app/shared/network/remote/api_manager.dart';
 import 'package:movies_app/shared/network/remote/firebase_functions.dart';
 
 import '../shared/components/constants.dart';
 import '../shared/styles/colors.dart';
 
 class TopRatedSlider extends StatefulWidget {
-  const TopRatedSlider({Key? key}) : super(key: key);
+  const TopRatedSlider({super.key});
 
   @override
   State<TopRatedSlider> createState() => _TopRatedSliderState();
@@ -23,16 +23,15 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
       child: FutureBuilder(
         future: ApiManager.getTopRatedMovies(),
         builder: (context, AsyncSnapshot<dynamic> snapshot) {
-          // Adjust type of AsyncSnapshot to match the actual type returned by getTopRatedMovies()
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const SizedBox();
           }
           if (snapshot.hasError) {
-            return const Center(
+            return Center(
               child: Text(
                 "Something went Wrong !",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   color: MyColors.primaryColor,
                 ),
               ),
@@ -40,11 +39,11 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
           }
           var topRatedList = snapshot.data?.results ?? [];
           if (topRatedList.isEmpty) {
-            return const Center(
+            return Center(
               child: Text(
                 "No Results",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   color: MyColors.primaryColor,
                 ),
               ),
@@ -53,7 +52,7 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
           return Container(
             color: MyColors.secBackgroundColor,
             child: Padding(
-              padding: const EdgeInsets.only(left: 10.0),
+              padding: EdgeInsets.only(left: 10.0.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -64,14 +63,14 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
                     "Top Rated",
                     style: TextStyle(
                         color: MyColors.primaryColor,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.bold),
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600),
                   ),
                   SizedBox(
                     height: 15.h,
                   ),
                   SizedBox(
-                    height: 210.h,
+                    height: 280.h,
                     width: 700.w,
                     child: ListView.separated(
                       separatorBuilder: (context, index) => SizedBox(
@@ -88,12 +87,12 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
                             Column(
                               children: [
                                 SizedBox(
-                                  height: 190,
-                                  width: 130,
+                                  height: 200.h,
+                                  width: 130.w,
                                   child: ClipRRect(
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4),
-                                        topRight: Radius.circular(4)),
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(5.r),
+                                        topRight: Radius.circular(5.r)),
                                     child: InkWell(
                                       onTap: () {
                                         Navigator.push(
@@ -128,58 +127,57 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
                                             ));
                                       },
                                       child: Image.network(
-                                        fit: BoxFit.fill,
                                         '${Constants.imageURL}${movie.posterPath}',
                                         filterQuality: FilterQuality.high,
-                                        height: 50,
+                                        height: 50.h,
                                         width: double.infinity,
                                       ),
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                       color: MyColors.ratingColor,
                                       boxShadow: [
                                         BoxShadow(
                                             color: MyColors.navBarColor,
-                                            spreadRadius: 3,
+                                            spreadRadius: 3.r,
                                             blurRadius: 5)
                                       ],
                                       borderRadius: BorderRadius.only(
-                                          bottomRight: Radius.circular(4),
-                                          bottomLeft: Radius.circular(4))),
+                                          bottomRight: Radius.circular(4.r),
+                                          bottomLeft: Radius.circular(4.r))),
                                   child: Column(
                                     children: [
                                       SizedBox(
-                                        width: 130,
+                                        width: 100.w,
                                         child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            const Icon(
+                                            Icon(
                                               Icons.star_rounded,
                                               color: MyColors.primaryColor,
-                                              size: 20,
+                                              size: 20.sp,
                                             ),
-                                            const SizedBox(
-                                              width: 3,
+                                            SizedBox(
+                                              width: 3.w,
                                             ),
                                             Text(
                                               voteAverage.toStringAsFixed(1),
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 1,
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   overflow: TextOverflow.fade,
                                                   color:
                                                       MyColors.textWhiteColor,
-                                                  fontSize: 14),
+                                                  fontSize: 14.sp),
                                             ),
                                           ],
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 130,
+                                        width: 120.w,
                                         child: Text(
                                           movie.title,
                                           overflow: TextOverflow.ellipsis,
@@ -191,15 +189,15 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 130,
+                                        width: 130.w,
                                         child: Text(
                                           movie.releaseDate,
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                               overflow: TextOverflow.fade,
                                               color: Colors.grey,
-                                              fontSize: 12),
+                                              fontSize: 12.sp),
                                         ),
                                       ),
                                     ],
@@ -207,28 +205,27 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
                                 ),
                               ],
                             ),
-                            Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    WatchListModel model = WatchListModel(
-                                        title: topRatedList[index].title ?? "",
-                                        overview:
-                                            topRatedList[index].overview ?? "",
-                                        backDropPath:
-                                            topRatedList[index].backdropPath ??
-                                                "");
-                                    FirebaseFunctions.addToWatchList(model);
-                                  },
-                                  child: Icon(
-                                    CupertinoIcons.bookmark_fill,
-                                    color: MyColors.textWhiteColor
-                                        .withOpacity(0.75),
-                                    size: 30,
-                                  ),
+                            Positioned(
+                              top: 5,
+                              right: 5,
+                              child: InkWell(
+                                onTap: () {
+                                  WatchListModel model = WatchListModel(
+                                      title: topRatedList[index].title ?? "",
+                                      overview:
+                                          topRatedList[index].overview ?? "",
+                                      backDropPath:
+                                          topRatedList[index].backdropPath ??
+                                              "");
+                                  FirebaseFunctions.addToWatchList(model);
+                                },
+                                child: Icon(
+                                  CupertinoIcons.bookmark_fill,
+                                  color:
+                                      MyColors.textWhiteColor.withOpacity(0.75),
+                                  size: 30.sp,
                                 ),
-                              ],
+                              ),
                             ),
                           ],
                         );

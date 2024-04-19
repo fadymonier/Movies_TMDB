@@ -19,7 +19,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(12.0.r),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -30,13 +30,13 @@ class _SearchWidgetState extends State<SearchWidget> {
                   filled: true,
                   fillColor: MyColors.searchBarColor,
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     borderSide: const BorderSide(
                       color: MyColors.textWhiteColor,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     borderSide: const BorderSide(
                       color: MyColors.textWhiteColor,
                     ),
@@ -69,7 +69,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                   setState(() {});
                 },
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
               Expanded(
                 child: FutureBuilder(
                   future: ApiManager.searchMovies(searchController.text),
@@ -82,11 +82,11 @@ class _SearchWidgetState extends State<SearchWidget> {
                       );
                     }
                     if (snapshot.hasError) {
-                      return const Center(
+                      return Center(
                         child: Text(
                           "Something went Wrong !",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             color: MyColors.primaryColor,
                           ),
                         ),
@@ -130,40 +130,42 @@ class _SearchWidgetState extends State<SearchWidget> {
                           title: Row(
                             children: [
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(5.r),
                                 child: movie['backdrop_path'] != null
                                     ? Image.network(
                                         backdropUrl,
-                                        width: 150,
-                                        height: 100,
+                                        width: 150.w,
+                                        height: 100.h,
                                         fit: BoxFit.fill,
                                       )
                                     : Image.asset(
                                         backdropUrl,
-                                        width: 150,
-                                        height: 100,
+                                        width: 150.w,
+                                        height: 100.h,
                                         fit: BoxFit.fill,
                                       ),
                               ),
-                              const SizedBox(width: 15),
+                              SizedBox(width: 15.w),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       movie['title'],
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         color: MyColors.primaryColor,
-                                        fontSize: 16,
+                                        fontSize: 16.sp,
                                         fontWeight: FontWeight.w500,
                                       ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                    const SizedBox(height: 8),
+                                    SizedBox(height: 8.h),
                                     Text(
                                       movie['overview'],
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         color: MyColors.textWhiteColor,
-                                        fontSize: 14,
+                                        fontSize: 14.sp,
                                       ),
                                       maxLines: 3,
                                       overflow: TextOverflow.ellipsis,
