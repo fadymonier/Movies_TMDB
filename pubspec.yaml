@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^1.0.8
   provider: ^6.1.2
   outline_search_bar: ^2.3.0
   carousel_slider: ^4.2.1

@@ -27,8 +27,7 @@ class FirebaseFunctions {
     return getWatchListCollection().get();
   }
 
-  static Future<void> removeFromWatchList(WatchListModel id) async {
-    var collection = getWatchListCollection();
-    await collection.doc().delete();
+  static Future<void> removeFromWatchList(String id) {
+    return getWatchListCollection().doc(id).delete();
   }
 }

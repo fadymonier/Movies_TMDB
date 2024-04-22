@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -124,9 +125,15 @@ class _UpcomingSliderState extends State<UpcomingSlider> {
                                                           ""),
                                         ));
                                   },
-                                  child: Image.network(
+                                  child: CachedNetworkImage(
                                     fit: BoxFit.fill,
-                                    '${Constants.imageURL}${snapshot.data!.results?[index].posterPath}',
+                                    imageUrl:
+                                        '${Constants.imageURL}${snapshot.data!.results?[index].posterPath}',
+                                    placeholder: (context, url) => const Center(
+                                      child: CircularProgressIndicator(
+                                        color: MyColors.primaryColor,
+                                      ),
+                                    ),
                                     filterQuality: FilterQuality.high,
                                     height: 130.h,
                                     width: double.infinity,

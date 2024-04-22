@@ -1,6 +1,5 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/items/popular_slider.dart';
@@ -22,7 +21,7 @@ class _HomeTabState extends State<HomeTab> {
       backgroundColor: MyColors.backgroundColor,
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 986.h,
+          height: 990.h,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

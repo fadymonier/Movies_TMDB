@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -79,8 +80,14 @@ class _PopularSliderState extends State<PopularSlider> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Image.network(
-                        '${Constants.imageURL}${snapshot.data?.results?[index].backdropPath}',
+                      CachedNetworkImage(
+                        imageUrl:
+                            '${Constants.imageURL}${snapshot.data?.results?[index].backdropPath}',
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(
+                            color: MyColors.primaryColor,
+                          ),
+                        ),
                         fit: BoxFit.fill,
                         height: 220.h,
                         width: double.infinity,
@@ -135,8 +142,9 @@ class _PopularSliderState extends State<PopularSlider> {
                                                     ""),
                                       ));
                                 },
-                                child: Image.network(
-                                  '${Constants.imageURL}${snapshot.data?.results?[index].posterPath}',
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      '${Constants.imageURL}${snapshot.data?.results?[index].posterPath}',
                                   fit: BoxFit.contain,
                                   height: 200.h,
                                   width: 130.w,

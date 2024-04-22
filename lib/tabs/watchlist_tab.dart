@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,7 @@ import '../shared/styles/colors.dart';
 class WatchListTab extends StatefulWidget {
   final WatchListModel model;
 
-  const WatchListTab({Key? key, required this.model}) : super(key: key);
+  const WatchListTab({super.key, required this.model});
 
   @override
   State<WatchListTab> createState() => _WatchListTabState();
@@ -27,9 +28,10 @@ class _WatchListTabState extends State<WatchListTab> {
         title: Text(
           "WatchList",
           style: TextStyle(
-              color: MyColors.primaryColor,
-              fontSize: 26.sp,
-              fontWeight: FontWeight.bold),
+            color: MyColors.primaryColor,
+            fontSize: 26.sp,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: FutureBuilder(
@@ -43,15 +45,26 @@ class _WatchListTabState extends State<WatchListTab> {
             );
           }
           if (snapshot.hasError) {
-            return const Center(
+            return Center(
               child: Text(
                 "Something Went Wrong!",
-                style: TextStyle(fontSize: 18, color: MyColors.primaryColor),
+                style: TextStyle(fontSize: 18.sp, color: MyColors.primaryColor),
               ),
             );
           }
           List<WatchListModel> watchList =
               snapshot.data?.docs.map((doc) => doc.data()).toList() ?? [];
+          if (watchList.isEmpty) {
+            return Center(
+              child: Text(
+                "WatchList is Empty !",
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    color: MyColors.primaryColor,
+                    fontWeight: FontWeight.w600),
+              ),
+            );
+          }
           return ListView.separated(
             separatorBuilder: (context, index) => Container(
               width: double.infinity,
@@ -64,7 +77,7 @@ class _WatchListTabState extends State<WatchListTab> {
               WatchListModel currentItem = watchList[index];
               return Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Container(
+                child: SizedBox(
                   width: 600.w,
                   child: Row(
                     children: [
@@ -76,28 +89,35 @@ class _WatchListTabState extends State<WatchListTab> {
                             width: 160,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(4),
-                              child: Image.network(
-                                "${Constants.imageURL}${currentItem.backDropPath}",
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    "${Constants.imageURL}${currentItem.backDropPath}",
                                 fit: BoxFit.fill,
+                                placeholder: (context, url) => const Center(
+                                  child: CircularProgressIndicator(
+                                    color: MyColors.primaryColor,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              FirebaseFunctions.removeFromWatchList(
-                                  currentItem);
-                            },
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Icon(
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  FirebaseFunctions.removeFromWatchList(
+                                      currentItem.id);
+                                  setState(() {});
+                                },
+                                child: Icon(
                                   CupertinoIcons.bookmark_fill,
                                   color:
                                       MyColors.primaryColor.withOpacity(0.75),
                                   size: 30,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

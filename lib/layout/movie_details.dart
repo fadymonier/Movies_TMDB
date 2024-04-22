@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/shared/styles/colors.dart';
@@ -47,8 +48,13 @@ class MovieDetailsScreen extends StatelessWidget {
         children: [
           SizedBox(
             width: double.infinity,
-            child: Image.network(
-              imageUrl + backdropUrl,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl + backdropUrl,
+              placeholder: (context, url) => const Center(
+                child: CircularProgressIndicator(
+                  color: MyColors.primaryColor,
+                ),
+              ),
               fit: BoxFit.fill,
             ),
           ),
@@ -78,8 +84,13 @@ class MovieDetailsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
                 child: SizedBox(
                   height: 200,
-                  child: Image.network(
-                    imageUrl + posterUrl,
+                  child: CachedNetworkImage(
+                    imageUrl: imageUrl + posterUrl,
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(
+                        color: MyColors.primaryColor,
+                      ),
+                    ),
                     fit: BoxFit.fill,
                   ),
                 ),

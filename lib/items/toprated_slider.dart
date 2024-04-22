@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -126,8 +127,15 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
                                                           ""),
                                             ));
                                       },
-                                      child: Image.network(
-                                        '${Constants.imageURL}${movie.posterPath}',
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            '${Constants.imageURL}${movie.posterPath}',
+                                        placeholder: (context, url) =>
+                                            const Center(
+                                          child: CircularProgressIndicator(
+                                            color: MyColors.primaryColor,
+                                          ),
+                                        ),
                                         filterQuality: FilterQuality.high,
                                         height: 50.h,
                                         width: double.infinity,
@@ -205,26 +213,21 @@ class _TopRatedSliderState extends State<TopRatedSlider> {
                                 ),
                               ],
                             ),
-                            Positioned(
-                              top: 5,
-                              right: 5,
-                              child: InkWell(
-                                onTap: () {
-                                  WatchListModel model = WatchListModel(
-                                      title: topRatedList[index].title ?? "",
-                                      overview:
-                                          topRatedList[index].overview ?? "",
-                                      backDropPath:
-                                          topRatedList[index].backdropPath ??
-                                              "");
-                                  FirebaseFunctions.addToWatchList(model);
-                                },
-                                child: Icon(
-                                  CupertinoIcons.bookmark_fill,
-                                  color:
-                                      MyColors.textWhiteColor.withOpacity(0.75),
-                                  size: 30.sp,
-                                ),
+                            InkWell(
+                              onTap: () {
+                                WatchListModel model = WatchListModel(
+                                    title: topRatedList[index].title ?? "",
+                                    overview:
+                                        topRatedList[index].overview ?? "",
+                                    backDropPath:
+                                        topRatedList[index].backdropPath ?? "");
+                                FirebaseFunctions.addToWatchList(model);
+                              },
+                              child: Icon(
+                                CupertinoIcons.bookmark_fill,
+                                color:
+                                    MyColors.textWhiteColor.withOpacity(0.75),
+                                size: 30.sp,
                               ),
                             ),
                           ],
