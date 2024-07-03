@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/items/popular_slider.dart';
-import 'package:movies_app/items/topRated_slider.dart';
-import 'package:movies_app/items/upcoming_slider.dart';
+import 'package:movies_app/widgets/popular_slider.dart';
+import 'package:movies_app/widgets/toprated_slider.dart';
+import 'package:movies_app/widgets/upcoming_slider.dart';
 import 'package:movies_app/shared/styles/colors.dart';
 
 class HomeTab extends StatefulWidget {

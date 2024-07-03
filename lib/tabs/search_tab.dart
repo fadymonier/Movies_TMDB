@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/items/searchbar_widget.dart';
+import 'package:movies_app/widgets/searchbar_widget.dart';
 import 'package:movies_app/shared/styles/colors.dart';
 
 class SearchTab extends StatefulWidget {
